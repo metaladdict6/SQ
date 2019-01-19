@@ -34,7 +34,7 @@ public class ArrivaLogger {
 	                newMessage=true;
 	    	        XStream xstream = new XStream();
 	    	        xstream.alias("Bericht", Bericht.class);
-	    	        xstream.alias("ETA", ETA.class);
+	    	        xstream.alias("EstimatedTimeOfArrival", ETA.class);
 	    	        Bericht bericht=(Bericht)xstream.fromXML(text);
 	    	        aantalBerichten++;
 	    	        aantalETAs+=bericht.ETAs.size();
