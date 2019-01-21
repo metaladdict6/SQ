@@ -60,7 +60,7 @@ public class InfoBord {
 		return infobord;
 	}
 	
-	public void setRegels(){
+	public void setRulesAndTotalTime(){
 		String[] infoTekst={"--1--","--2--","--3--","--4--","leeg"};
 		int[] aankomsttijden=new int[5];
 		int aantalRegels = 0;
@@ -68,6 +68,7 @@ public class InfoBord {
 			CheckArrivalTimes(aantalRegels, aankomsttijden, infoTekst);
 		}
 		if(checkRepaint(aantalRegels, aankomsttijden)){
+			hashValue= getTotalTime(aantalRegels, aankomsttijden);
 			repaintInfoBord(infoTekst);
 		}
 	}
@@ -99,15 +100,19 @@ public class InfoBord {
 	}
 
 	private boolean checkRepaint(int aantalRegels, int[] aankomsttijden){
+		int totaalTijden= getTotalTime(aantalRegels, aankomsttijden);
+		if(hashValue!=totaalTijden){
+			return true;
+		}
+		return false;
+	}
+
+	private int getTotalTime(int aantalRegels, int[] aankomsttijden){
 		int totaalTijden=0;
 		for(int i=0; i<aantalRegels;i++){
 			totaalTijden+=aankomsttijden[i];
 		}
-		if(hashValue!=totaalTijden){
-			hashValue=totaalTijden;
-			return true;
-		}
-		return false;
+		return totaalTijden;
 	}
 
 	private void repaintInfoBord(String[] infoTekst){

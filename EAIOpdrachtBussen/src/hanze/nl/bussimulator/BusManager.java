@@ -38,9 +38,13 @@ public class BusManager {
     }
 
     private void start() {
-        bus.halteNummer = (bus.direction ==1) ? 0 : bus.lijn.getLengte()-1;
+        updateStopNumber();
         printCurrentEstimatedTimeOfArrival();
         toNextStop();
+    }
+
+    private void updateStopNumber(){
+        bus.halteNummer = (bus.direction ==1) ? 0 : bus.lijn.getLengte()-1;
     }
 
     boolean move(){
