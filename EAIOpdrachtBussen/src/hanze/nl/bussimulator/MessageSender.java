@@ -16,10 +16,10 @@ public class MessageSender {
                 EstimatedTimeOfArrival estimatedTimeOfArrival = new EstimatedTimeOfArrival(bus.lijn.getHalte(bus.halteNummer).name(),bus.lijn.getRichting(bus.halteNummer),0);
                 message.EstimatedTimeOfArrivals.add(estimatedTimeOfArrival);
             }
-            Halte.Positie eerstVolgende=bus.lijn.getHalte(bus.halteNummer+ bus.richting).getPositie();
+            BusStop.Positie eerstVolgende=bus.lijn.getHalte(bus.halteNummer+ bus.richting).getPositie();
             int tijdNaarHalte=bus.totVolgendeHalte+nu;
             for (i = bus.halteNummer+ bus.richting ; !(i>= bus.lijn.getLengte()) && !(i < 0); i=i+ bus.richting ){
-                tijdNaarHalte+= bus.lijn.getHalte(i).afstand(eerstVolgende);
+                tijdNaarHalte+= bus.lijn.getHalte(i).distance(eerstVolgende);
                 EstimatedTimeOfArrival estimatedTimeOfArrival = new EstimatedTimeOfArrival(bus.lijn.getHalte(i).name(), bus.lijn.getRichting(i),tijdNaarHalte);
                 message.EstimatedTimeOfArrivals.add(estimatedTimeOfArrival);
                 eerstVolgende=bus.lijn.getHalte(i).getPositie();

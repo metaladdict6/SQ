@@ -1,11 +1,11 @@
 package hanze.nl.bussimulator;
 
 public class Stop {
-    Halte halte;
+    BusStop busStop;
     int richting;
 
-    public Stop(Halte halte, int richting){
-        this.halte=halte;
+    public Stop(BusStop busStop, int richting){
+        this.busStop = busStop;
         this.richting=richting;
     }
 }

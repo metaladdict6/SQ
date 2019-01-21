@@ -1,7 +1,7 @@
 package hanze.nl.bussimulator;
 
 import com.thoughtworks.xstream.XStream;
-import hanze.nl.bussimulator.Halte.Positie;
+import hanze.nl.bussimulator.BusStop.Positie;
 
 public class Bus{
 
@@ -29,19 +29,19 @@ public class Bus{
 	
 	public void naarVolgendeHalte(){
 		Positie volgendeHalte = lijn.getHalte(halteNummer+richting).getPositie();
-		totVolgendeHalte = lijn.getHalte(halteNummer).afstand(volgendeHalte);
+		totVolgendeHalte = lijn.getHalte(halteNummer).distance(volgendeHalte);
 	}
 	
 	public boolean halteBereikt(){
 		halteNummer+=richting;
 		bijHalte=true;
 		if ((halteNummer>=lijn.getLengte()-1) || (halteNummer == 0)) {
-			System.out.printf("Bus %s heeft endPoint (halte %s, direction %d) bereikt.%n",
+			System.out.printf("Bus %s heeft endPoint (busStop %s, direction %d) bereikt.%n",
 					lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));
 			return true;
 		}
 		else {
-			System.out.printf("Bus %s heeft halte %s, direction %d bereikt.%n",
+			System.out.printf("Bus %s heeft busStop %s, direction %d bereikt.%n",
 					lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));		
 			naarVolgendeHalte();
 		}		
@@ -50,7 +50,7 @@ public class Bus{
 	
 	public void start() {
 		halteNummer = (richting==1) ? 0 : lijn.getLengte()-1;
-		System.out.printf("Bus %s is vertrokken van halte %s in direction %d.%n",
+		System.out.printf("Bus %s is vertrokken van busStop %s in direction %d.%n",
 				lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));		
 		naarVolgendeHalte();
 	}
