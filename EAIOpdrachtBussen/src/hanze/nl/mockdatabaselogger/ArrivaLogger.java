@@ -33,11 +33,11 @@ public class ArrivaLogger {
 	                String text = textMessage.getText();
 	                newMessage=true;
 	    	        XStream xstream = new XStream();
-	    	        xstream.alias("Bericht", Bericht.class);
-	    	        xstream.alias("EstimatedTimeOfArrival", ETA.class);
-	    	        Bericht bericht=(Bericht)xstream.fromXML(text);
+	    	        xstream.alias("Message", Message.class);
+	    	        xstream.alias("EstimatedTimeOfArrival", EstimatedTimeOfArrival.class);
+	    	        Message bericht=(Message)xstream.fromXML(text);
 	    	        aantalBerichten++;
-	    	        aantalETAs+=bericht.ETAs.size();
+	    	        aantalETAs+=bericht.EstimatedTimeOfArrivals.size();
 	            } else {
 	                System.out.println("Received: " + message);
 	            }            	
@@ -45,7 +45,7 @@ public class ArrivaLogger {
 	        consumer.close();
 	        session.close();
 	        connection.close();
-	        System.out.println(aantalBerichten + " berichten met " + aantalETAs + " ETAs verwerkt.");
+	        System.out.println(aantalBerichten + " berichten met " + aantalETAs + " EstimatedTimeOfArrivals verwerkt.");
     	} catch (Exception e) {
     		System.out.println("Caught: " + e);
     		e.printStackTrace();

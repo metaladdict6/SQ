@@ -1,6 +1,7 @@
 package hanze.nl.infobord;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BoxLayout;
@@ -25,6 +26,7 @@ public class InfoBord {
 	private JLabel regel2;
 	private JLabel regel3;
 	private JLabel regel4;
+	private ArrayList<JLabel> rules = new ArrayList<>();
 	
 	private InfoBord(){
 		this.scherm = new JFrame("InfoBord");
@@ -38,6 +40,10 @@ public class InfoBord {
 		this.regel2=new JLabel("-regel2-");
 		this.regel3=new JLabel("-regel3-");
 		this.regel4=new JLabel("-regel4-");
+		this.rules.add(regel1);
+		this.rules.add(regel2);
+		this.rules.add(regel3);
+		this.rules.add(regel4);
 		panel.add(tijdregel1);
 		panel.add(tijdregel2);
 		panel.add(regel1);
